@@ -1,3 +1,4 @@
+window.msal = {};
 /*! @azure/msal-browser v4.7.0 2025-03-11 */
 'use strict';
 'use strict';
@@ -802,21 +803,21 @@ const DEFAULT_CRYPTO_IMPLEMENTATION = {
 /**
  * Log message level.
  */
-exports.LogLevel = void 0;
+window.msal.LogLevel = void 0;
 (function (LogLevel) {
   LogLevel[(LogLevel['Error'] = 0)] = 'Error';
   LogLevel[(LogLevel['Warning'] = 1)] = 'Warning';
   LogLevel[(LogLevel['Info'] = 2)] = 'Info';
   LogLevel[(LogLevel['Verbose'] = 3)] = 'Verbose';
   LogLevel[(LogLevel['Trace'] = 4)] = 'Trace';
-})(exports.LogLevel || (exports.LogLevel = {}));
+})(window.msal.LogLevel || (window.msal.LogLevel = {}));
 /**
  * Class which facilitates logging of messages to a specific place.
  */
 class Logger {
   constructor(loggerOptions, packageName, packageVersion) {
     // Current log level, defaults to info.
-    this.level = exports.LogLevel.Info;
+    this.level = window.msal.LogLevel.Info;
     const defaultLoggerCallback = () => {
       return;
     };
@@ -828,7 +829,7 @@ class Logger {
     this.level =
       typeof setLoggerOptions.logLevel === 'number'
         ? setLoggerOptions.logLevel
-        : exports.LogLevel.Info;
+        : window.msal.LogLevel.Info;
     this.correlationId =
       setLoggerOptions.correlationId || Constants.EMPTY_STRING;
     this.packageName = packageName || Constants.EMPTY_STRING;
@@ -840,7 +841,7 @@ class Logger {
         // allow users to not set loggerCallback
       },
       piiLoggingEnabled: false,
-      logLevel: exports.LogLevel.Info,
+      logLevel: window.msal.LogLevel.Info,
     };
   }
   /**
@@ -874,7 +875,7 @@ class Logger {
       options.correlationId || this.correlationId || ''
     }]`;
     const log = `${logHeader} : ${this.packageName}@${this.packageVersion} : ${
-      exports.LogLevel[options.logLevel]
+      window.msal.LogLevel[options.logLevel]
     } - ${logMessage}`;
     // debug(`msal:${LogLevel[options.logLevel]}${options.containsPii ? "-Pii": Constants.EMPTY_STRING}${options.context ? `:${options.context}` : Constants.EMPTY_STRING}`)(logMessage);
     this.executeCallback(options.logLevel, log, options.containsPii || false);
@@ -892,7 +893,7 @@ class Logger {
    */
   error(message, correlationId) {
     this.logMessage(message, {
-      logLevel: exports.LogLevel.Error,
+      logLevel: window.msal.LogLevel.Error,
       containsPii: false,
       correlationId: correlationId || Constants.EMPTY_STRING,
     });
@@ -902,7 +903,7 @@ class Logger {
    */
   errorPii(message, correlationId) {
     this.logMessage(message, {
-      logLevel: exports.LogLevel.Error,
+      logLevel: window.msal.LogLevel.Error,
       containsPii: true,
       correlationId: correlationId || Constants.EMPTY_STRING,
     });
@@ -912,7 +913,7 @@ class Logger {
    */
   warning(message, correlationId) {
     this.logMessage(message, {
-      logLevel: exports.LogLevel.Warning,
+      logLevel: window.msal.LogLevel.Warning,
       containsPii: false,
       correlationId: correlationId || Constants.EMPTY_STRING,
     });
@@ -922,7 +923,7 @@ class Logger {
    */
   warningPii(message, correlationId) {
     this.logMessage(message, {
-      logLevel: exports.LogLevel.Warning,
+      logLevel: window.msal.LogLevel.Warning,
       containsPii: true,
       correlationId: correlationId || Constants.EMPTY_STRING,
     });
@@ -932,7 +933,7 @@ class Logger {
    */
   info(message, correlationId) {
     this.logMessage(message, {
-      logLevel: exports.LogLevel.Info,
+      logLevel: window.msal.LogLevel.Info,
       containsPii: false,
       correlationId: correlationId || Constants.EMPTY_STRING,
     });
@@ -942,7 +943,7 @@ class Logger {
    */
   infoPii(message, correlationId) {
     this.logMessage(message, {
-      logLevel: exports.LogLevel.Info,
+      logLevel: window.msal.LogLevel.Info,
       containsPii: true,
       correlationId: correlationId || Constants.EMPTY_STRING,
     });
@@ -952,7 +953,7 @@ class Logger {
    */
   verbose(message, correlationId) {
     this.logMessage(message, {
-      logLevel: exports.LogLevel.Verbose,
+      logLevel: window.msal.LogLevel.Verbose,
       containsPii: false,
       correlationId: correlationId || Constants.EMPTY_STRING,
     });
@@ -962,7 +963,7 @@ class Logger {
    */
   verbosePii(message, correlationId) {
     this.logMessage(message, {
-      logLevel: exports.LogLevel.Verbose,
+      logLevel: window.msal.LogLevel.Verbose,
       containsPii: true,
       correlationId: correlationId || Constants.EMPTY_STRING,
     });
@@ -972,7 +973,7 @@ class Logger {
    */
   trace(message, correlationId) {
     this.logMessage(message, {
-      logLevel: exports.LogLevel.Trace,
+      logLevel: window.msal.LogLevel.Trace,
       containsPii: false,
       correlationId: correlationId || Constants.EMPTY_STRING,
     });
@@ -982,7 +983,7 @@ class Logger {
    */
   tracePii(message, correlationId) {
     this.logMessage(message, {
-      logLevel: exports.LogLevel.Trace,
+      logLevel: window.msal.LogLevel.Trace,
       containsPii: true,
       correlationId: correlationId || Constants.EMPTY_STRING,
     });
@@ -4257,7 +4258,7 @@ const DEFAULT_LOGGER_IMPLEMENTATION = {
     // allow users to not set loggerCallback
   },
   piiLoggingEnabled: false,
-  logLevel: exports.LogLevel.Info,
+  logLevel: window.msal.LogLevel.Info,
   correlationId: Constants.EMPTY_STRING,
 };
 const DEFAULT_CACHE_OPTIONS = {
@@ -11036,13 +11037,13 @@ const ApiId = {
 /*
  * Interaction type of the API - used for state and telemetry
  */
-exports.InteractionType = void 0;
+window.msal.InteractionType = void 0;
 (function (InteractionType) {
   InteractionType['Redirect'] = 'redirect';
   InteractionType['Popup'] = 'popup';
   InteractionType['Silent'] = 'silent';
   InteractionType['None'] = 'none';
-})(exports.InteractionType || (exports.InteractionType = {}));
+})(window.msal.InteractionType || (window.msal.InteractionType = {}));
 /**
  * Types of interaction currently in progress.
  * Used in events in wrapper libraries to invoke functions when certain interaction is in progress or all interactions are complete.
@@ -11977,7 +11978,7 @@ function buildConfiguration(
     loggerCallback: () => {
       // allow users to not set logger call back
     },
-    logLevel: exports.LogLevel.Info,
+    logLevel: window.msal.LogLevel.Info,
     piiLoggingEnabled: false,
   };
   // Default system options for browser
@@ -12068,19 +12069,19 @@ const version = '4.7.0';
 class BaseOperatingContext {
   static loggerCallback(level, message) {
     switch (level) {
-      case exports.LogLevel.Error:
+      case window.msal.LogLevel.Error:
         // eslint-disable-next-line no-console
         console.error(message);
         return;
-      case exports.LogLevel.Info:
+      case window.msal.LogLevel.Info:
         // eslint-disable-next-line no-console
         console.info(message);
         return;
-      case exports.LogLevel.Verbose:
+      case window.msal.LogLevel.Verbose:
         // eslint-disable-next-line no-console
         console.debug(message);
         return;
-      case exports.LogLevel.Warning:
+      case window.msal.LogLevel.Warning:
         // eslint-disable-next-line no-console
         console.warn(message);
         return;
@@ -12115,8 +12116,8 @@ class BaseOperatingContext {
         : undefined;
     const loggerOptions = { ...this.config.system.loggerOptions };
     const logLevel =
-      logLevelKey && Object.keys(exports.LogLevel).includes(logLevelKey)
-        ? exports.LogLevel[logLevelKey]
+      logLevelKey && Object.keys(window.msal.LogLevel).includes(logLevelKey)
+        ? window.msal.LogLevel[logLevelKey]
         : undefined;
     if (logLevel) {
       loggerOptions.loggerCallback = BaseOperatingContext.loggerCallback;
@@ -17287,7 +17288,7 @@ class PopupClient extends StandardInteractionClient {
       this.logger,
       this.performanceClient,
       this.correlationId
-    )(request, exports.InteractionType.Popup);
+    )(request, window.msal.InteractionType.Popup);
     /*
      * Skip pre-connect for async popups to reduce time between user interaction and popup window creation to avoid
      * popup from being blocked by browsers with shorter popup timers
@@ -17350,7 +17351,7 @@ class PopupClient extends StandardInteractionClient {
       const popupWindow = this.initiateAuthRequest(navigateUrl, popupParams);
       this.eventHandler.emitEvent(
         EventType.POPUP_OPENED,
-        exports.InteractionType.Popup,
+        window.msal.InteractionType.Popup,
         { popupWindow },
         null
       );
@@ -17446,7 +17447,7 @@ class PopupClient extends StandardInteractionClient {
     this.logger.verbose('logoutPopupAsync called');
     this.eventHandler.emitEvent(
       EventType.LOGOUT_START,
-      exports.InteractionType.Popup,
+      window.msal.InteractionType.Popup,
       validRequest
     );
     const serverTelemetryManager = this.initializeServerTelemetryManager(
@@ -17480,7 +17481,7 @@ class PopupClient extends StandardInteractionClient {
           );
           this.eventHandler.emitEvent(
             EventType.LOGOUT_SUCCESS,
-            exports.InteractionType.Popup,
+            window.msal.InteractionType.Popup,
             validRequest
           );
           if (mainWindowRedirectUri) {
@@ -17506,14 +17507,14 @@ class PopupClient extends StandardInteractionClient {
       const logoutUri = authClient.getLogoutUri(validRequest);
       this.eventHandler.emitEvent(
         EventType.LOGOUT_SUCCESS,
-        exports.InteractionType.Popup,
+        window.msal.InteractionType.Popup,
         validRequest
       );
       // Open the popup window to requestUrl.
       const popupWindow = this.openPopup(logoutUri, popupParams);
       this.eventHandler.emitEvent(
         EventType.POPUP_OPENED,
-        exports.InteractionType.Popup,
+        window.msal.InteractionType.Popup,
         { popupWindow },
         null
       );
@@ -17554,19 +17555,19 @@ class PopupClient extends StandardInteractionClient {
       this.browserStorage.setInteractionInProgress(false);
       this.eventHandler.emitEvent(
         EventType.LOGOUT_FAILURE,
-        exports.InteractionType.Popup,
+        window.msal.InteractionType.Popup,
         null,
         e
       );
       this.eventHandler.emitEvent(
         EventType.LOGOUT_END,
-        exports.InteractionType.Popup
+        window.msal.InteractionType.Popup
       );
       throw e;
     }
     this.eventHandler.emitEvent(
       EventType.LOGOUT_END,
-      exports.InteractionType.Popup
+      window.msal.InteractionType.Popup
     );
   }
   /**
@@ -17756,7 +17757,7 @@ class PopupClient extends StandardInteractionClient {
    */
   unloadWindow(e) {
     this.browserStorage.cleanRequestByInteractionType(
-      exports.InteractionType.Popup
+      window.msal.InteractionType.Popup
     );
     if (this.currentWindow) {
       this.currentWindow.close();
@@ -18033,7 +18034,7 @@ class RedirectClient extends StandardInteractionClient {
       this.logger,
       this.performanceClient,
       this.correlationId
-    )(request, exports.InteractionType.Redirect);
+    )(request, window.msal.InteractionType.Redirect);
     this.browserStorage.updateCacheEntries(
       validRequest.state,
       validRequest.nonce,
@@ -18053,7 +18054,7 @@ class RedirectClient extends StandardInteractionClient {
         this.browserStorage.cleanRequestByState(validRequest.state);
         this.eventHandler.emitEvent(
           EventType.RESTORE_FROM_BFCACHE,
-          exports.InteractionType.Redirect
+          window.msal.InteractionType.Redirect
         );
       }
     };
@@ -18149,7 +18150,7 @@ class RedirectClient extends StandardInteractionClient {
           'handleRedirectPromise did not detect a response as a result of a redirect. Cleaning temporary cache.'
         );
         this.browserStorage.cleanRequestByInteractionType(
-          exports.InteractionType.Redirect
+          window.msal.InteractionType.Redirect
         );
         // Do not instrument "no_server_response" if user clicked back button
         if (getNavigationType() !== 'back_forward') {
@@ -18255,7 +18256,7 @@ class RedirectClient extends StandardInteractionClient {
         serverTelemetryManager.cacheFailedRequest(e);
       }
       this.browserStorage.cleanRequestByInteractionType(
-        exports.InteractionType.Redirect
+        window.msal.InteractionType.Redirect
       );
       throw e;
     }
@@ -18285,7 +18286,7 @@ class RedirectClient extends StandardInteractionClient {
         validateInteractionType(
           response,
           this.browserCrypto,
-          exports.InteractionType.Redirect
+          window.msal.InteractionType.Redirect
         );
       } catch (e) {
         if (e instanceof AuthError) {
@@ -18404,7 +18405,7 @@ class RedirectClient extends StandardInteractionClient {
     try {
       this.eventHandler.emitEvent(
         EventType.LOGOUT_START,
-        exports.InteractionType.Redirect,
+        window.msal.InteractionType.Redirect,
         logoutRequest
       );
       // Clear cache on logout
@@ -18436,7 +18437,7 @@ class RedirectClient extends StandardInteractionClient {
             );
             this.eventHandler.emitEvent(
               EventType.LOGOUT_SUCCESS,
-              exports.InteractionType.Redirect,
+              window.msal.InteractionType.Redirect,
               validLogoutRequest
             );
             return;
@@ -18447,7 +18448,7 @@ class RedirectClient extends StandardInteractionClient {
       const logoutUri = authClient.getLogoutUri(validLogoutRequest);
       this.eventHandler.emitEvent(
         EventType.LOGOUT_SUCCESS,
-        exports.InteractionType.Redirect,
+        window.msal.InteractionType.Redirect,
         validLogoutRequest
       );
       // Check if onRedirectNavigate is implemented, and invoke it if so
@@ -18494,19 +18495,19 @@ class RedirectClient extends StandardInteractionClient {
       }
       this.eventHandler.emitEvent(
         EventType.LOGOUT_FAILURE,
-        exports.InteractionType.Redirect,
+        window.msal.InteractionType.Redirect,
         null,
         e
       );
       this.eventHandler.emitEvent(
         EventType.LOGOUT_END,
-        exports.InteractionType.Redirect
+        window.msal.InteractionType.Redirect
       );
       throw e;
     }
     this.eventHandler.emitEvent(
       EventType.LOGOUT_END,
-      exports.InteractionType.Redirect
+      window.msal.InteractionType.Redirect
     );
   }
   /**
@@ -18776,7 +18777,7 @@ class SilentIframeClient extends StandardInteractionClient {
       this.logger,
       this.performanceClient,
       request.correlationId
-    )(inputRequest, exports.InteractionType.Silent);
+    )(inputRequest, window.msal.InteractionType.Silent);
     preconnect(silentRequest.authority);
     const serverTelemetryManager = this.initializeServerTelemetryManager(
       this.apiId
@@ -18828,7 +18829,7 @@ class SilentIframeClient extends StandardInteractionClient {
         this.logger,
         this.performanceClient,
         request.correlationId
-      )(inputRequest, exports.InteractionType.Silent);
+      )(inputRequest, window.msal.InteractionType.Silent);
       return await invokeAsync(
         this.silentTokenHelper.bind(this),
         PerformanceEvents.SilentIframeClientTokenHelper,
@@ -19427,7 +19428,7 @@ class SilentAuthCodeClient extends StandardInteractionClient {
       this.logger,
       this.performanceClient,
       request.correlationId
-    )(request, exports.InteractionType.Silent);
+    )(request, window.msal.InteractionType.Silent);
     const serverTelemetryManager = this.initializeServerTelemetryManager(
       this.apiId
     );
@@ -19762,7 +19763,7 @@ class StandardController {
     );
     this.eventHandler.emitEvent(
       EventType.HANDLE_REDIRECT_START,
-      exports.InteractionType.Redirect
+      window.msal.InteractionType.Redirect
     );
     let redirectResponse;
     if (useNative && this.nativeExtensionProvider) {
@@ -19812,7 +19813,7 @@ class StandardController {
           if (isLoggingIn) {
             this.eventHandler.emitEvent(
               EventType.LOGIN_SUCCESS,
-              exports.InteractionType.Redirect,
+              window.msal.InteractionType.Redirect,
               result
             );
             this.logger.verbose(
@@ -19821,7 +19822,7 @@ class StandardController {
           } else {
             this.eventHandler.emitEvent(
               EventType.ACQUIRE_TOKEN_SUCCESS,
-              exports.InteractionType.Redirect,
+              window.msal.InteractionType.Redirect,
               result
             );
             this.logger.verbose(
@@ -19845,7 +19846,7 @@ class StandardController {
         }
         this.eventHandler.emitEvent(
           EventType.HANDLE_REDIRECT_END,
-          exports.InteractionType.Redirect
+          window.msal.InteractionType.Redirect
         );
         return result;
       })
@@ -19855,21 +19856,21 @@ class StandardController {
         if (loggedInAccounts.length > 0) {
           this.eventHandler.emitEvent(
             EventType.ACQUIRE_TOKEN_FAILURE,
-            exports.InteractionType.Redirect,
+            window.msal.InteractionType.Redirect,
             null,
             eventError
           );
         } else {
           this.eventHandler.emitEvent(
             EventType.LOGIN_FAILURE,
-            exports.InteractionType.Redirect,
+            window.msal.InteractionType.Redirect,
             null,
             eventError
           );
         }
         this.eventHandler.emitEvent(
           EventType.HANDLE_REDIRECT_END,
-          exports.InteractionType.Redirect
+          window.msal.InteractionType.Redirect
         );
         rootMeasurement.end(
           {
@@ -19939,13 +19940,13 @@ class StandardController {
       if (isLoggedIn) {
         this.eventHandler.emitEvent(
           EventType.ACQUIRE_TOKEN_START,
-          exports.InteractionType.Redirect,
+          window.msal.InteractionType.Redirect,
           request
         );
       } else {
         this.eventHandler.emitEvent(
           EventType.LOGIN_START,
-          exports.InteractionType.Redirect,
+          window.msal.InteractionType.Redirect,
           request
         );
       }
@@ -19992,14 +19993,14 @@ class StandardController {
       if (isLoggedIn) {
         this.eventHandler.emitEvent(
           EventType.ACQUIRE_TOKEN_FAILURE,
-          exports.InteractionType.Redirect,
+          window.msal.InteractionType.Redirect,
           null,
           e
         );
       } else {
         this.eventHandler.emitEvent(
           EventType.LOGIN_FAILURE,
-          exports.InteractionType.Redirect,
+          window.msal.InteractionType.Redirect,
           null,
           e
         );
@@ -20039,13 +20040,13 @@ class StandardController {
     if (loggedInAccounts.length > 0) {
       this.eventHandler.emitEvent(
         EventType.ACQUIRE_TOKEN_START,
-        exports.InteractionType.Popup,
+        window.msal.InteractionType.Popup,
         request
       );
     } else {
       this.eventHandler.emitEvent(
         EventType.LOGIN_START,
-        exports.InteractionType.Popup,
+        window.msal.InteractionType.Popup,
         request
       );
     }
@@ -20097,13 +20098,13 @@ class StandardController {
         if (isLoggingIn) {
           this.eventHandler.emitEvent(
             EventType.LOGIN_SUCCESS,
-            exports.InteractionType.Popup,
+            window.msal.InteractionType.Popup,
             result
           );
         } else {
           this.eventHandler.emitEvent(
             EventType.ACQUIRE_TOKEN_SUCCESS,
-            exports.InteractionType.Popup,
+            window.msal.InteractionType.Popup,
             result
           );
         }
@@ -20119,14 +20120,14 @@ class StandardController {
         if (loggedInAccounts.length > 0) {
           this.eventHandler.emitEvent(
             EventType.ACQUIRE_TOKEN_FAILURE,
-            exports.InteractionType.Popup,
+            window.msal.InteractionType.Popup,
             null,
             e
           );
         } else {
           this.eventHandler.emitEvent(
             EventType.LOGIN_FAILURE,
-            exports.InteractionType.Popup,
+            window.msal.InteractionType.Popup,
             null,
             e
           );
@@ -20204,7 +20205,7 @@ class StandardController {
     this.logger.verbose('ssoSilent called', correlationId);
     this.eventHandler.emitEvent(
       EventType.SSO_SILENT_START,
-      exports.InteractionType.Silent,
+      window.msal.InteractionType.Silent,
       validRequest
     );
     let result;
@@ -20232,7 +20233,7 @@ class StandardController {
       .then((response) => {
         this.eventHandler.emitEvent(
           EventType.SSO_SILENT_SUCCESS,
-          exports.InteractionType.Silent,
+          window.msal.InteractionType.Silent,
           response
         );
         this.ssoSilentMeasurement?.end({
@@ -20247,7 +20248,7 @@ class StandardController {
       .catch((e) => {
         this.eventHandler.emitEvent(
           EventType.SSO_SILENT_FAILURE,
-          exports.InteractionType.Silent,
+          window.msal.InteractionType.Silent,
           null,
           e
         );
@@ -20286,7 +20287,7 @@ class StandardController {
     preflightCheck(this.initialized, atbcMeasurement);
     this.eventHandler.emitEvent(
       EventType.ACQUIRE_TOKEN_BY_CODE_START,
-      exports.InteractionType.Silent,
+      window.msal.InteractionType.Silent,
       request
     );
     atbcMeasurement.add({ scenarioId: request.scenarioId });
@@ -20309,7 +20310,7 @@ class StandardController {
             .then((result) => {
               this.eventHandler.emitEvent(
                 EventType.ACQUIRE_TOKEN_BY_CODE_SUCCESS,
-                exports.InteractionType.Silent,
+                window.msal.InteractionType.Silent,
                 result
               );
               this.hybridAuthCodeResponses.delete(hybridAuthCode);
@@ -20326,7 +20327,7 @@ class StandardController {
               this.hybridAuthCodeResponses.delete(hybridAuthCode);
               this.eventHandler.emitEvent(
                 EventType.ACQUIRE_TOKEN_BY_CODE_FAILURE,
-                exports.InteractionType.Silent,
+                window.msal.InteractionType.Silent,
                 null,
                 error
               );
@@ -20377,7 +20378,7 @@ class StandardController {
     } catch (e) {
       this.eventHandler.emitEvent(
         EventType.ACQUIRE_TOKEN_BY_CODE_FAILURE,
-        exports.InteractionType.Silent,
+        window.msal.InteractionType.Silent,
         null,
         e
       );
@@ -21146,7 +21147,7 @@ class StandardController {
     );
     this.eventHandler.emitEvent(
       EventType.ACQUIRE_TOKEN_START,
-      exports.InteractionType.Silent,
+      window.msal.InteractionType.Silent,
       request
     );
     if (request.correlationId) {
@@ -21264,7 +21265,7 @@ class StandardController {
       .then((response) => {
         this.eventHandler.emitEvent(
           EventType.ACQUIRE_TOKEN_SUCCESS,
-          exports.InteractionType.Silent,
+          window.msal.InteractionType.Silent,
           response
         );
         if (request.correlationId) {
@@ -21281,7 +21282,7 @@ class StandardController {
       .catch((tokenRenewalError) => {
         this.eventHandler.emitEvent(
           EventType.ACQUIRE_TOKEN_FAILURE,
-          exports.InteractionType.Silent,
+          window.msal.InteractionType.Silent,
           null,
           tokenRenewalError
         );
@@ -21350,7 +21351,7 @@ class StandardController {
         }
         this.eventHandler.emitEvent(
           EventType.ACQUIRE_TOKEN_NETWORK_START,
-          exports.InteractionType.Silent,
+          window.msal.InteractionType.Silent,
           silentRequest
         );
         return invokeAsync(
@@ -21764,7 +21765,7 @@ class NestedAppAuthController {
     const validRequest = this.ensureValidRequest(request);
     this.eventHandler.emitEvent(
       EventType.ACQUIRE_TOKEN_START,
-      exports.InteractionType.Popup,
+      window.msal.InteractionType.Popup,
       validRequest
     );
     const atPopupMeasurement = this.performanceClient.startMeasurement(
@@ -21794,7 +21795,7 @@ class NestedAppAuthController {
       };
       this.eventHandler.emitEvent(
         EventType.ACQUIRE_TOKEN_SUCCESS,
-        exports.InteractionType.Popup,
+        window.msal.InteractionType.Popup,
         result
       );
       atPopupMeasurement.add({
@@ -21813,7 +21814,7 @@ class NestedAppAuthController {
           : this.nestedAppAuthAdapter.fromBridgeError(e);
       this.eventHandler.emitEvent(
         EventType.ACQUIRE_TOKEN_FAILURE,
-        exports.InteractionType.Popup,
+        window.msal.InteractionType.Popup,
         null,
         e
       );
@@ -21835,7 +21836,7 @@ class NestedAppAuthController {
     const validRequest = this.ensureValidRequest(request);
     this.eventHandler.emitEvent(
       EventType.ACQUIRE_TOKEN_START,
-      exports.InteractionType.Silent,
+      window.msal.InteractionType.Silent,
       validRequest
     );
     // Look for tokens in the cache first
@@ -21843,7 +21844,7 @@ class NestedAppAuthController {
     if (result) {
       this.eventHandler.emitEvent(
         EventType.ACQUIRE_TOKEN_SUCCESS,
-        exports.InteractionType.Silent,
+        window.msal.InteractionType.Silent,
         result
       );
       return result;
@@ -21879,7 +21880,7 @@ class NestedAppAuthController {
       };
       this.eventHandler.emitEvent(
         EventType.ACQUIRE_TOKEN_SUCCESS,
-        exports.InteractionType.Silent,
+        window.msal.InteractionType.Silent,
         result
       );
       ssoSilentMeasurement?.add({
@@ -21898,7 +21899,7 @@ class NestedAppAuthController {
           : this.nestedAppAuthAdapter.fromBridgeError(e);
       this.eventHandler.emitEvent(
         EventType.ACQUIRE_TOKEN_FAILURE,
-        exports.InteractionType.Silent,
+        window.msal.InteractionType.Silent,
         null,
         e
       );
@@ -21953,7 +21954,7 @@ class NestedAppAuthController {
     if (result) {
       this.eventHandler.emitEvent(
         EventType.ACQUIRE_TOKEN_SUCCESS,
-        exports.InteractionType.Silent,
+        window.msal.InteractionType.Silent,
         result
       );
       atsMeasurement?.add({
@@ -21970,7 +21971,7 @@ class NestedAppAuthController {
     );
     this.eventHandler.emitEvent(
       EventType.ACQUIRE_TOKEN_FAILURE,
-      exports.InteractionType.Silent,
+      window.msal.InteractionType.Silent,
       null
     );
     atsMeasurement?.end({
@@ -23540,8 +23541,8 @@ class EventMessageUtils {
         return InteractionStatus.SsoSilent;
       case EventType.ACQUIRE_TOKEN_START:
         if (
-          message.interactionType === exports.InteractionType.Redirect ||
-          message.interactionType === exports.InteractionType.Popup
+          message.interactionType === window.msal.InteractionType.Redirect ||
+          message.interactionType === window.msal.InteractionType.Popup
         ) {
           return InteractionStatus.AcquireToken;
         }
@@ -23578,8 +23579,8 @@ class EventMessageUtils {
       case EventType.ACQUIRE_TOKEN_FAILURE:
       case EventType.RESTORE_FROM_BFCACHE:
         if (
-          message.interactionType === exports.InteractionType.Redirect ||
-          message.interactionType === exports.InteractionType.Popup
+          message.interactionType === window.msal.InteractionType.Redirect ||
+          message.interactionType === window.msal.InteractionType.Popup
         ) {
           if (
             currentStatus &&
@@ -23986,64 +23987,64 @@ var BrowserPerformanceMeasurement$1 = /*#__PURE__*/ Object.freeze({
   BrowserPerformanceMeasurement: BrowserPerformanceMeasurement,
 });
 
-exports.AccountEntity = AccountEntity;
-exports.ApiId = ApiId;
-exports.AuthError = AuthError;
-exports.AuthErrorCodes = AuthErrorCodes;
-exports.AuthErrorMessage = AuthErrorMessage;
-exports.AuthenticationHeaderParser = AuthenticationHeaderParser;
-exports.AuthenticationScheme = AuthenticationScheme;
-exports.AzureCloudInstance = AzureCloudInstance;
-exports.BrowserAuthError = BrowserAuthError;
-exports.BrowserAuthErrorCodes = BrowserAuthErrorCodes;
-exports.BrowserAuthErrorMessage = BrowserAuthErrorMessage;
-exports.BrowserCacheLocation = BrowserCacheLocation;
-exports.BrowserConfigurationAuthError = BrowserConfigurationAuthError;
-exports.BrowserConfigurationAuthErrorCodes = BrowserConfigurationAuthErrorCodes;
-exports.BrowserConfigurationAuthErrorMessage =
+window.msal.AccountEntity = AccountEntity;
+window.msal.ApiId = ApiId;
+window.msal.AuthError = AuthError;
+window.msal.AuthErrorCodes = AuthErrorCodes;
+window.msal.AuthErrorMessage = AuthErrorMessage;
+window.msal.AuthenticationHeaderParser = AuthenticationHeaderParser;
+window.msal.AuthenticationScheme = AuthenticationScheme;
+window.msal.AzureCloudInstance = AzureCloudInstance;
+window.msal.BrowserAuthError = BrowserAuthError;
+window.msal.BrowserAuthErrorCodes = BrowserAuthErrorCodes;
+window.msal.BrowserAuthErrorMessage = BrowserAuthErrorMessage;
+window.msal.BrowserCacheLocation = BrowserCacheLocation;
+window.msal.BrowserConfigurationAuthError = BrowserConfigurationAuthError;
+window.msal.BrowserConfigurationAuthErrorCodes = BrowserConfigurationAuthErrorCodes;
+window.msal.BrowserConfigurationAuthErrorMessage =
   BrowserConfigurationAuthErrorMessage;
-exports.BrowserPerformanceClient = BrowserPerformanceClient;
-exports.BrowserPerformanceMeasurement = BrowserPerformanceMeasurement;
-exports.BrowserUtils = BrowserUtils;
-exports.CacheLookupPolicy = CacheLookupPolicy;
-exports.ClientAuthError = ClientAuthError;
-exports.ClientAuthErrorCodes = ClientAuthErrorCodes;
-exports.ClientAuthErrorMessage = ClientAuthErrorMessage;
-exports.ClientConfigurationError = ClientConfigurationError;
-exports.ClientConfigurationErrorCodes = ClientConfigurationErrorCodes;
-exports.ClientConfigurationErrorMessage = ClientConfigurationErrorMessage;
-exports.DEFAULT_IFRAME_TIMEOUT_MS = DEFAULT_IFRAME_TIMEOUT_MS;
-exports.EventHandler = EventHandler;
-exports.EventMessageUtils = EventMessageUtils;
-exports.EventType = EventType;
-exports.InteractionRequiredAuthError = InteractionRequiredAuthError;
-exports.InteractionRequiredAuthErrorCodes = InteractionRequiredAuthErrorCodes;
-exports.InteractionRequiredAuthErrorMessage =
+window.msal.BrowserPerformanceClient = BrowserPerformanceClient;
+window.msal.BrowserPerformanceMeasurement = BrowserPerformanceMeasurement;
+window.msal.BrowserUtils = BrowserUtils;
+window.msal.CacheLookupPolicy = CacheLookupPolicy;
+window.msal.ClientAuthError = ClientAuthError;
+window.msal.ClientAuthErrorCodes = ClientAuthErrorCodes;
+window.msal.ClientAuthErrorMessage = ClientAuthErrorMessage;
+window.msal.ClientConfigurationError = ClientConfigurationError;
+window.msal.ClientConfigurationErrorCodes = ClientConfigurationErrorCodes;
+window.msal.ClientConfigurationErrorMessage = ClientConfigurationErrorMessage;
+window.msal.DEFAULT_IFRAME_TIMEOUT_MS = DEFAULT_IFRAME_TIMEOUT_MS;
+window.msal.EventHandler = EventHandler;
+window.msal.EventMessageUtils = EventMessageUtils;
+window.msal.EventType = EventType;
+window.msal.InteractionRequiredAuthError = InteractionRequiredAuthError;
+window.msal.InteractionRequiredAuthErrorCodes = InteractionRequiredAuthErrorCodes;
+window.msal.InteractionRequiredAuthErrorMessage =
   InteractionRequiredAuthErrorMessage;
-exports.InteractionStatus = InteractionStatus;
-exports.JsonWebTokenTypes = JsonWebTokenTypes;
-exports.LocalStorage = LocalStorage;
-exports.Logger = Logger;
-exports.MemoryStorage = MemoryStorage;
-exports.NavigationClient = NavigationClient;
-exports.OIDC_DEFAULT_SCOPES = OIDC_DEFAULT_SCOPES;
-exports.PerformanceEvents = PerformanceEvents;
-exports.PromptValue = PromptValue;
-exports.ProtocolMode = ProtocolMode;
-exports.PublicClientApplication = PublicClientApplication;
-exports.PublicClientNext = PublicClientNext;
-exports.ServerError = ServerError;
-exports.ServerResponseType = ServerResponseType;
-exports.SessionStorage = SessionStorage;
-exports.SignedHttpRequest = SignedHttpRequest;
-exports.StringUtils = StringUtils;
-exports.StubPerformanceClient = StubPerformanceClient;
-exports.UrlString = UrlString;
-exports.WrapperSKU = WrapperSKU;
-exports.createNestablePublicClientApplication =
+window.msal.InteractionStatus = InteractionStatus;
+window.msal.JsonWebTokenTypes = JsonWebTokenTypes;
+window.msal.LocalStorage = LocalStorage;
+window.msal.Logger = Logger;
+window.msal.MemoryStorage = MemoryStorage;
+window.msal.NavigationClient = NavigationClient;
+window.msal.OIDC_DEFAULT_SCOPES = OIDC_DEFAULT_SCOPES;
+window.msal.PerformanceEvents = PerformanceEvents;
+window.msal.PromptValue = PromptValue;
+window.msal.ProtocolMode = ProtocolMode;
+window.msal.PublicClientApplication = PublicClientApplication;
+window.msal.PublicClientNext = PublicClientNext;
+window.msal.ServerError = ServerError;
+window.msal.ServerResponseType = ServerResponseType;
+window.msal.SessionStorage = SessionStorage;
+window.msal.SignedHttpRequest = SignedHttpRequest;
+window.msal.StringUtils = StringUtils;
+window.msal.StubPerformanceClient = StubPerformanceClient;
+window.msal.UrlString = UrlString;
+window.msal.WrapperSKU = WrapperSKU;
+window.msal.createNestablePublicClientApplication =
   createNestablePublicClientApplication;
-exports.createStandardPublicClientApplication =
+window.msal.createStandardPublicClientApplication =
   createStandardPublicClientApplication;
-exports.stubbedPublicClientApplication = stubbedPublicClientApplication;
-exports.version = version;
+window.msal.stubbedPublicClientApplication = stubbedPublicClientApplication;
+window.msal.version = version;
 //# sourceMappingURL=msal-browser.cjs.map
