@@ -8,6 +8,7 @@ window.msal = {};
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
+console.log('crypto api', window.crypto);
 const Constants = {
   LIBRARY_NAME: 'MSAL.JS',
   SKU: 'msal.js.common',
