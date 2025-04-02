@@ -1,0 +1,31 @@
+<p>Waiting...</p>
+<script src="auth.js"></script>
+<script>
+    const msalConfig = {
+        auth: {
+          clientId: 'b36e82ef-ce68-40ea-903e-4fc412425546',
+          authority:
+            'https://login.microsoftonline.com/35595a02-4d6d-44ac-99e1-f9ab4cd872db',
+          redirectUri: 'https://tu-dominio.com/callback', 
+        },
+    };
+
+    const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+    document.getElementById('loginButton').addEventListener('click', () => {
+    const loginRequest = {
+        scopes: ['user.read'],
+    };
+
+    msalInstance
+        .loginPopup(loginRequest)
+        .then((response) => {
+        console.log('Login exitoso:', response);
+        alert('Login exitoso');
+        })
+        .catch((error) => {
+        console.error('Error en el login:', error);
+        alert('Error en el login');
+        });
+    });
+</script>
